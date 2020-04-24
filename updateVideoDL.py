@@ -8,6 +8,7 @@ import funcy
 import requests
 
 import config
+import config1
 from config import dlDir, icon
 from config1 import dlVideoNameMode
 
@@ -58,13 +59,23 @@ def dl(videoid, upName, videoName):
     if dlVideoNameMode == 1:
         if not os.path.exists(dlDir + upName):
             os.system(f'mkdir -p "{dlDir + upName}"')
-        os.system("cd '{}'; you-get -l --no-caption https://www.bilibili.com/video/av{}".
-                  format(dlDir + upName, videoid))
+        os.system("cd '{}'; you-get -l {} https://www.bilibili.com/video/av{}".
+                  format(dlDir + upName,
+                         '' if config1.dlCaption else '--no-caption',
+                         videoid
+                         )
+                  )
     elif dlVideoNameMode == 2:
         os.system("cd '{dlDir}'; "
-                  "you-get -l --no-caption --debug -O '「{upName}」{videoName}' "
+                  "you-get -l {isCaption} --debug -O '「{upName}」{videoName}' "
                   "https://www.bilibili.com/video/av{av}".
-                  format(dlDir=dlDir, upName=upName.replace('/', '-'), videoName=videoName.replace('/', '-'), av=videoid))
+                  format(dlDir=dlDir,
+                         upName=upName.replace('/', '-'),
+                         videoName=videoName.replace('/', '-'),
+                         av=videoid,
+                         isCaption='' if config1.dlCaption else '--no-caption',
+                         )
+                  )
 
 
 def notify(title, message, icon=icon):
