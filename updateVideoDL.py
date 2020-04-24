@@ -9,6 +9,7 @@ import requests
 
 import config
 from config import dlDir, icon
+from config1 import dlVideoNameMode
 
 if not os.path.exists(dlDir):
     sys.exit()
@@ -47,16 +48,23 @@ def updatesOfUp(upName, mid, timestamp):
     for i in j['data']['vlist']:
         if i['created'] > timestamp:
             notify(upName, i['title'])
-            dl(i['aid'], upName)
+            dl(i['aid'], upName, videoName=i['title'])
 
 
 @funcy.print_enters
 @funcy.print_durations
 # @funcy.print_exits
-def dl(videoid, upName):
-    if not os.path.exists(dlDir + upName):
-        os.system(f'mkdir -p "{dlDir + upName}"')
-    os.system("cd '{}'; you-get -l https://www.bilibili.com/video/av{}".format(dlDir + upName, videoid))
+def dl(videoid, upName, videoName):
+    if dlVideoNameMode == 1:
+        if not os.path.exists(dlDir + upName):
+            os.system(f'mkdir -p "{dlDir + upName}"')
+        os.system("cd '{}'; you-get -l --no-caption https://www.bilibili.com/video/av{}".
+                  format(dlDir + upName, videoid))
+    elif dlVideoNameMode == 2:
+        os.system("cd '{dlDir}'; "
+                  "you-get -l --no-caption --debug -O '「{upName}」{videoName}' "
+                  "https://www.bilibili.com/video/av{av}".
+                  format(dlDir=dlDir, upName=upName.replace('/', '-'), videoName=videoName.replace('/', '-'), av=videoid))
 
 
 def notify(title, message, icon=icon):
