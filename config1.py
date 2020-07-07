@@ -11,4 +11,4 @@ dlVideoNameMode = 2
 # 2: 「人民医学」李兰娟院士团队发现
 
 # 是否下载字幕
-dlCaption = True
+dlCaption = False
