@@ -1,7 +1,6 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 import os
-import re
 
 curpath = '/Users/zhangronghui/01Code/private/bilibiliAutoUpdate'
 os.chdir(curpath)
@@ -16,10 +15,12 @@ ups = {
     '解说-木鱼水心': 927587,
     '解说-小片片说大片': 10119428,
     '解说-蔡老板家的长工': 17171565,
-    '解说-大蓝雀': 362767725,
+    # '解说-大蓝雀': 362767725,
     '解说-大聪看电影': 253350665,
+    '解说-阿斗归来了': 21837784,
     # 编程
     '编程-一俩三四五': 97228279,
+    '编程-zerotrac': 3203291,
     # 搞笑
     '搞笑-凉风Kaze': 14110780,
     '搞笑-黄一刀有毒': 297242063,

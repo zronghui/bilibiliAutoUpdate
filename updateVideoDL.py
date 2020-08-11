@@ -36,17 +36,17 @@ def updateTS():
 def updatesOfUp(upName, mid, timestamp):
     params = (
         ('mid', str(mid)),
-        ('pagesize', '100'),
+        ('ps', '100'),
+        ('pn', '1'),
         ('tid', '0'),
-        ('page', '1'),
         ('keyword', ''),
         ('order', 'pubdate'),
     )
 
-    response = requests.get('http://space.bilibili.com/ajax/member/getSubmitVideos',
+    response = requests.get('https://api.bilibili.com/x/space/arc/search',
                             headers=config.headers, params=params)
     j = response.json()
-    for i in j['data']['vlist']:
+    for i in j['data']['list']['vlist']:
         if i['created'] > timestamp:
             notify(upName, i['title'])
             dl(i['aid'], upName, videoName=i['title'])
