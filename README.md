@@ -6,7 +6,7 @@
 
 ## 效果图
 
-![image-2020090109443782](https://i.loli.net/2020/09/01/INuxDAyfzHqjb6X.png)
+<img src="https://i.loli.net/2020/09/01/INuxDAyfzHqjb6X.png" alt="image-2020090109443782" style="zoom: 33%;" />
 
 ## 安装
 
